@@ -1,0 +1,190 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<robot generator="Robot 5.0.1 (Python 3.10.6 on win32)" generated="20220827 17:16:19.569" rpa="false" schemaversion="3">
+<suite id="s1" name="Tokopedia" source="E:\Try\Robot Framework\Tokopedia">
+<suite id="s1-s1" name="Tests" source="E:\Try\Robot Framework\Tokopedia\Tests">
+<suite id="s1-s1-s1" name="Process Order" source="E:\Try\Robot Framework\Tokopedia\Tests\process_order.robot">
+<test id="s1-s1-s1-t1" name="Process Order with Empty Order ID" line="55">
+<kw name="Get Current Unixtime" library="keywords">
+<var>${current_unixtime}</var>
+<kw name="Get Current Date" library="DateTime">
+<var>${current_date}</var>
+<doc>Returns current local or UTC time with an optional increment.</doc>
+<msg timestamp="20220827 17:16:19.805" level="INFO">${current_date} = 2022-08-27 17:16:19.805</msg>
+<status status="PASS" starttime="20220827 17:16:19.805" endtime="20220827 17:16:19.807"/>
+</kw>
+<kw name="Convert Date" library="DateTime">
+<var>${current_unixtime}</var>
+<arg>${current_date}</arg>
+<arg>epoch</arg>
+<doc>Converts between supported `date formats`.</doc>
+<msg timestamp="20220827 17:16:19.810" level="INFO">${current_unixtime} = 1661595379.805</msg>
+<status status="PASS" starttime="20220827 17:16:19.807" endtime="20220827 17:16:19.811"/>
+</kw>
+<kw name="Evaluate" library="BuiltIn">
+<var>${current_unixtime}</var>
+<arg>${current_unixtime} * 1000</arg>
+<doc>Evaluates the given expression in Python and returns the result.</doc>
+<msg timestamp="20220827 17:16:19.812" level="INFO">${current_unixtime} = 1661595379805.0</msg>
+<status status="PASS" starttime="20220827 17:16:19.812" endtime="20220827 17:16:19.814"/>
+</kw>
+<kw name="Convert To Integer" library="BuiltIn">
+<var>${current_unixtime}</var>
+<arg>${current_unixtime}</arg>
+<doc>Converts the given item to an integer number.</doc>
+<msg timestamp="20220827 17:16:19.814" level="INFO">${current_unixtime} = 1661595379805</msg>
+<status status="PASS" starttime="20220827 17:16:19.814" endtime="20220827 17:16:19.816"/>
+</kw>
+<kw name="Convert To String" library="BuiltIn">
+<var>${str_current_unixtime}</var>
+<arg>${current_unixtime}</arg>
+<doc>Converts the given item to a Unicode string.</doc>
+<msg timestamp="20220827 17:16:19.817" level="INFO">${str_current_unixtime} = 1661595379805</msg>
+<status status="PASS" starttime="20220827 17:16:19.816" endtime="20220827 17:16:19.818"/>
+</kw>
+<msg timestamp="20220827 17:16:19.819" level="INFO">${current_unixtime} = 1661595379805</msg>
+<status status="PASS" starttime="20220827 17:16:19.804" endtime="20220827 17:16:19.821"/>
+</kw>
+<kw name="Set Variable" library="BuiltIn">
+<var>${empty_order_id}</var>
+<doc>Returns the given values which can then be assigned to a variables.</doc>
+<msg timestamp="20220827 17:16:19.822" level="INFO">${empty_order_id} = </msg>
+<status status="PASS" starttime="20220827 17:16:19.822" endtime="20220827 17:16:19.823"/>
+</kw>
+<kw name="Process Order" library="keywords">
+<var>${response}</var>
+<arg>${url_empty_order_id}</arg>
+<arg>${empty_order_id}</arg>
+<arg>${order_desc}</arg>
+<arg>${order_status}</arg>
+<arg>${current_unixtime}</arg>
+<arg>${special_order}</arg>
+<kw name="Create Session" library="RequestsLibrary">
+<arg>session</arg>
+<arg>${base_url}</arg>
+<doc>Create Session: create a HTTP session to a server</doc>
+<msg timestamp="20220827 17:16:19.825" level="INFO">Creating Session using : alias=session, url=http://private-84097e-tokopediatest.apiary-mock.com/, headers={},                     cookies={}, auth=None, timeout=None, proxies=None, verify=False,                     debug=0 </msg>
+<status status="PASS" starttime="20220827 17:16:19.825" endtime="20220827 17:16:19.827"/>
+</kw>
+<kw name="Create Dictionary" library="BuiltIn">
+<var>${body_request}</var>
+<arg>order_id=${order_id}</arg>
+<arg>order_description=${order_description}</arg>
+<arg>order_status=${order_status}</arg>
+<arg>last_updated_timestamp=${last_updated_timestamp}</arg>
+<arg>special_order=${special_order}</arg>
+<doc>Creates and returns a dictionary based on the given ``items``.</doc>
+<msg timestamp="20220827 17:16:19.829" level="INFO">${body_request} = {'order_id': '', 'order_description': 'Order Description', 'order_status': 'New', 'last_updated_timestamp': '1661595379805', 'special_order': 'true'}</msg>
+<status status="PASS" starttime="20220827 17:16:19.827" endtime="20220827 17:16:19.832"/>
+</kw>
+<kw name="Create Dictionary" library="BuiltIn">
+<var>${header_request}</var>
+<arg>Content-Type=application/json</arg>
+<doc>Creates and returns a dictionary based on the given ``items``.</doc>
+<msg timestamp="20220827 17:16:19.833" level="INFO">${header_request} = {'Content-Type': 'application/json'}</msg>
+<status status="PASS" starttime="20220827 17:16:19.832" endtime="20220827 17:16:19.835"/>
+</kw>
+<kw name="POST On Session" library="RequestsLibrary">
+<var>${response}</var>
+<arg>session</arg>
+<arg>${uri}</arg>
+<arg>json=${body_request}</arg>
+<arg>headers=${header_request}</arg>
+<doc>Sends a POST request on a previously created HTTP Session.</doc>
+<msg timestamp="20220827 17:16:20.420" level="INFO">POST Request : url=http://private-84097e-tokopediatest.apiary-mock.com/processOrderB 
+ path_url=/processOrderB 
+ headers={'User-Agent': 'python-requests/2.28.1', 'Accept-Encoding': 'gzip, deflate', 'Accept': '*/*', 'Connection': 'keep-alive', 'Content-Type': 'application/json', 'Content-Length': '149'} 
+ body=b'{"order_id": "", "order_description": "Order Description", "order_status": "New", "last_updated_timestamp": "1661595379805", "special_order": "true"}' 
+ </msg>
+<msg timestamp="20220827 17:16:20.421" level="INFO">POST Response : url=http://private-84097e-tokopediatest.apiary-mock.com/processOrderB 
+ status=200, reason=OK 
+ headers={'Content-Type': 'application/json', 'Content-Length': '86', 'X-Apiary-RateLimit-Limit': '120', 'X-Apiary-RateLimit-Remaining': '119', 'Access-Control-Allow-Origin': '*', 'Access-Control-Allow-Methods': 'OPTIONS,GET,HEAD,POST,PUT,DELETE,TRACE,CONNECT', 'Access-Control-Expose-Headers': 'Content-Type', 'Access-Control-Max-Age': '10', 'x-apiary-transaction-id': '6309eef6e48af1007b193bdf', 'Date': 'Sat, 27 Aug 2022 10:16:22 GMT', 'Connection': 'keep-alive'} 
+ body={
+    "status":  "Failed",
+    "error_message": "Invalid Parameters",
+    "data": {}
+} 
+ </msg>
+<msg timestamp="20220827 17:16:20.423" level="INFO">${response} = &lt;Response [200]&gt;</msg>
+<status status="PASS" starttime="20220827 17:16:19.835" endtime="20220827 17:16:20.424"/>
+</kw>
+<msg timestamp="20220827 17:16:20.424" level="INFO">${response} = &lt;Response [200]&gt;</msg>
+<status status="PASS" starttime="20220827 17:16:19.824" endtime="20220827 17:16:20.425"/>
+</kw>
+<kw name="Convert To String" library="BuiltIn">
+<var>${str_response}</var>
+<arg>${response.content}</arg>
+<doc>Converts the given item to a Unicode string.</doc>
+<msg timestamp="20220827 17:16:20.428" level="INFO">${str_response} = {
+    "status":  "Failed",
+    "error_message": "Invalid Parameters",
+    "data": {}
+}</msg>
+<status status="PASS" starttime="20220827 17:16:20.426" endtime="20220827 17:16:20.429"/>
+</kw>
+<kw name="Evaluate" library="BuiltIn">
+<var>${the data}</var>
+<arg>json.loads('''${str_response}''')</arg>
+<arg>json</arg>
+<doc>Evaluates the given expression in Python and returns the result.</doc>
+<msg timestamp="20220827 17:16:20.431" level="INFO">${the data} = {'status': 'Failed', 'error_message': 'Invalid Parameters', 'data': {}}</msg>
+<status status="PASS" starttime="20220827 17:16:20.430" endtime="20220827 17:16:20.432"/>
+</kw>
+<kw name="Convert To String" library="BuiltIn">
+<var>${resp_msg_status}</var>
+<arg>${the data['status']}</arg>
+<doc>Converts the given item to a Unicode string.</doc>
+<msg timestamp="20220827 17:16:20.434" level="INFO">${resp_msg_status} = Failed</msg>
+<status status="PASS" starttime="20220827 17:16:20.433" endtime="20220827 17:16:20.435"/>
+</kw>
+<kw name="Convert To String" library="BuiltIn">
+<var>${resp_msg_error}</var>
+<arg>${the data['error_message']}</arg>
+<doc>Converts the given item to a Unicode string.</doc>
+<msg timestamp="20220827 17:16:20.437" level="INFO">${resp_msg_error} = Invalid Parameters</msg>
+<status status="PASS" starttime="20220827 17:16:20.436" endtime="20220827 17:16:20.438"/>
+</kw>
+<kw name="Should Be Equal As Integers" library="BuiltIn">
+<arg>200</arg>
+<arg>${response.status_code}</arg>
+<doc>Fails if objects are unequal after converting them to integers.</doc>
+<msg timestamp="20220827 17:16:20.440" level="INFO">Argument types are:
+&lt;class 'str'&gt;
+&lt;class 'int'&gt;</msg>
+<status status="PASS" starttime="20220827 17:16:20.439" endtime="20220827 17:16:20.442"/>
+</kw>
+<kw name="Should Be Equal" library="BuiltIn">
+<arg>Failed</arg>
+<arg>${resp_msg_status}</arg>
+<doc>Fails if the given objects are unequal.</doc>
+<status status="PASS" starttime="20220827 17:16:20.442" endtime="20220827 17:16:20.443"/>
+</kw>
+<kw name="Should Be Equal" library="BuiltIn">
+<arg>Invalid Parameters</arg>
+<arg>${resp_msg_error}</arg>
+<doc>Fails if the given objects are unequal.</doc>
+<status status="PASS" starttime="20220827 17:16:20.444" endtime="20220827 17:16:20.445"/>
+</kw>
+<doc>Test case untuk validasi API Proses Order ketika parameter wajib dikosongkan. Catatan : Parameter yang diwajibkan di testing ini adalah order_id</doc>
+<status status="PASS" starttime="20220827 17:16:19.802" endtime="20220827 17:16:20.445"/>
+</test>
+<status status="PASS" starttime="20220827 17:16:19.606" endtime="20220827 17:16:20.447"/>
+</suite>
+<status status="PASS" starttime="20220827 17:16:19.602" endtime="20220827 17:16:20.451"/>
+</suite>
+<status status="PASS" starttime="20220827 17:16:19.574" endtime="20220827 17:16:20.454"/>
+</suite>
+<statistics>
+<total>
+<stat pass="1" fail="0" skip="0">All Tests</stat>
+</total>
+<tag>
+</tag>
+<suite>
+<stat pass="1" fail="0" skip="0" id="s1" name="Tokopedia">Tokopedia</stat>
+<stat pass="1" fail="0" skip="0" id="s1-s1" name="Tests">Tokopedia.Tests</stat>
+<stat pass="1" fail="0" skip="0" id="s1-s1-s1" name="Process Order">Tokopedia.Tests.Process Order</stat>
+</suite>
+</statistics>
+<errors>
+</errors>
+</robot>
