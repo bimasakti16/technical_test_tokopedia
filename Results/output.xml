@@ -1,69 +1,72 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<robot generator="Robot 5.0.1 (Python 3.10.6 on win32)" generated="20220827 17:23:51.759" rpa="false" schemaversion="3">
+<robot generator="Robot 5.0.1 (Python 3.10.6 on win32)" generated="20220827 18:16:11.235" rpa="false" schemaversion="3">
 <suite id="s1" name="Technical Test Tokopedia" source="E:\Try\Robot Framework\technical_test_tokopedia">
 <suite id="s1-s1" name="Tests" source="E:\Try\Robot Framework\technical_test_tokopedia\Tests">
 <suite id="s1-s1-s1" name="Process Order" source="E:\Try\Robot Framework\technical_test_tokopedia\Tests\process_order.robot">
-<test id="s1-s1-s1-t1" name="Process Order with Empty Order ID" line="55">
+<test id="s1-s1-s1-t1" name="Process Order with New Order ID" line="17">
 <kw name="Get Current Unixtime" library="keywords">
 <var>${current_unixtime}</var>
+<doc>Keyword ini berfungsi sebagai proses untuk mendapatkan value unixtime saat ini</doc>
 <kw name="Get Current Date" library="DateTime">
 <var>${current_date}</var>
 <doc>Returns current local or UTC time with an optional increment.</doc>
-<msg timestamp="20220827 17:23:51.989" level="INFO">${current_date} = 2022-08-27 17:23:51.989</msg>
-<status status="PASS" starttime="20220827 17:23:51.988" endtime="20220827 17:23:51.991"/>
+<msg timestamp="20220827 18:16:11.384" level="INFO">${current_date} = 2022-08-27 18:16:11.384</msg>
+<status status="PASS" starttime="20220827 18:16:11.384" endtime="20220827 18:16:11.387"/>
 </kw>
 <kw name="Convert Date" library="DateTime">
 <var>${current_unixtime}</var>
 <arg>${current_date}</arg>
 <arg>epoch</arg>
 <doc>Converts between supported `date formats`.</doc>
-<msg timestamp="20220827 17:23:51.994" level="INFO">${current_unixtime} = 1661595831.989</msg>
-<status status="PASS" starttime="20220827 17:23:51.991" endtime="20220827 17:23:51.995"/>
+<msg timestamp="20220827 18:16:11.398" level="INFO">${current_unixtime} = 1661598971.384</msg>
+<status status="PASS" starttime="20220827 18:16:11.387" endtime="20220827 18:16:11.412"/>
 </kw>
 <kw name="Evaluate" library="BuiltIn">
 <var>${current_unixtime}</var>
 <arg>${current_unixtime} * 1000</arg>
 <doc>Evaluates the given expression in Python and returns the result.</doc>
-<msg timestamp="20220827 17:23:51.996" level="INFO">${current_unixtime} = 1661595831989.0</msg>
-<status status="PASS" starttime="20220827 17:23:51.995" endtime="20220827 17:23:51.998"/>
+<msg timestamp="20220827 18:16:11.413" level="INFO">${current_unixtime} = 1661598971384.0</msg>
+<status status="PASS" starttime="20220827 18:16:11.412" endtime="20220827 18:16:11.417"/>
 </kw>
 <kw name="Convert To Integer" library="BuiltIn">
 <var>${current_unixtime}</var>
 <arg>${current_unixtime}</arg>
 <doc>Converts the given item to an integer number.</doc>
-<msg timestamp="20220827 17:23:51.999" level="INFO">${current_unixtime} = 1661595831989</msg>
-<status status="PASS" starttime="20220827 17:23:51.998" endtime="20220827 17:23:52.000"/>
+<msg timestamp="20220827 18:16:11.419" level="INFO">${current_unixtime} = 1661598971384</msg>
+<status status="PASS" starttime="20220827 18:16:11.418" endtime="20220827 18:16:11.420"/>
 </kw>
 <kw name="Convert To String" library="BuiltIn">
 <var>${str_current_unixtime}</var>
 <arg>${current_unixtime}</arg>
 <doc>Converts the given item to a Unicode string.</doc>
-<msg timestamp="20220827 17:23:52.001" level="INFO">${str_current_unixtime} = 1661595831989</msg>
-<status status="PASS" starttime="20220827 17:23:52.001" endtime="20220827 17:23:52.003"/>
+<msg timestamp="20220827 18:16:11.421" level="INFO">${str_current_unixtime} = 1661598971384</msg>
+<status status="PASS" starttime="20220827 18:16:11.420" endtime="20220827 18:16:11.422"/>
 </kw>
-<msg timestamp="20220827 17:23:52.003" level="INFO">${current_unixtime} = 1661595831989</msg>
-<status status="PASS" starttime="20220827 17:23:51.987" endtime="20220827 17:23:52.005"/>
+<msg timestamp="20220827 18:16:11.422" level="INFO">${current_unixtime} = 1661598971384</msg>
+<status status="PASS" starttime="20220827 18:16:11.383" endtime="20220827 18:16:11.423"/>
 </kw>
-<kw name="Set Variable" library="BuiltIn">
-<var>${empty_order_id}</var>
-<doc>Returns the given values which can then be assigned to a variables.</doc>
-<msg timestamp="20220827 17:23:52.006" level="INFO">${empty_order_id} = </msg>
-<status status="PASS" starttime="20220827 17:23:52.006" endtime="20220827 17:23:52.007"/>
+<kw name="Catenate" library="BuiltIn">
+<var>${new_order_id}</var>
+<arg>Order.${current_unixtime}</arg>
+<doc>Catenates the given items together and returns the resulted string.</doc>
+<msg timestamp="20220827 18:16:11.425" level="INFO">${new_order_id} = Order.1661598971384</msg>
+<status status="PASS" starttime="20220827 18:16:11.424" endtime="20220827 18:16:11.426"/>
 </kw>
 <kw name="Process Order" library="keywords">
 <var>${response}</var>
-<arg>${url_empty_order_id}</arg>
-<arg>${empty_order_id}</arg>
+<arg>${url_valid_order_id}</arg>
+<arg>${new_order_id}</arg>
 <arg>${order_desc}</arg>
 <arg>${order_status}</arg>
 <arg>${current_unixtime}</arg>
 <arg>${special_order}</arg>
+<doc>Keyword ini berfungsi sebagai proses untuk Request ke API Process Order</doc>
 <kw name="Create Session" library="RequestsLibrary">
 <arg>session</arg>
 <arg>${base_url}</arg>
 <doc>Create Session: create a HTTP session to a server</doc>
-<msg timestamp="20220827 17:23:52.010" level="INFO">Creating Session using : alias=session, url=http://private-84097e-tokopediatest.apiary-mock.com/, headers={},                     cookies={}, auth=None, timeout=None, proxies=None, verify=False,                     debug=0 </msg>
-<status status="PASS" starttime="20220827 17:23:52.009" endtime="20220827 17:23:52.012"/>
+<msg timestamp="20220827 18:16:11.429" level="INFO">Creating Session using : alias=session, url=http://private-84097e-tokopediatest.apiary-mock.com/, headers={},                     cookies={}, auth=None, timeout=None, proxies=None, verify=False,                     debug=0 </msg>
+<status status="PASS" starttime="20220827 18:16:11.428" endtime="20220827 18:16:11.430"/>
 </kw>
 <kw name="Create Dictionary" library="BuiltIn">
 <var>${body_request}</var>
@@ -73,15 +76,15 @@
 <arg>last_updated_timestamp=${last_updated_timestamp}</arg>
 <arg>special_order=${special_order}</arg>
 <doc>Creates and returns a dictionary based on the given ``items``.</doc>
-<msg timestamp="20220827 17:23:52.013" level="INFO">${body_request} = {'order_id': '', 'order_description': 'Order Description', 'order_status': 'New', 'last_updated_timestamp': '1661595831989', 'special_order': 'true'}</msg>
-<status status="PASS" starttime="20220827 17:23:52.012" endtime="20220827 17:23:52.015"/>
+<msg timestamp="20220827 18:16:11.432" level="INFO">${body_request} = {'order_id': 'Order.1661598971384', 'order_description': 'Order Description', 'order_status': 'New', 'last_updated_timestamp': '1661598971384', 'special_order': 'true'}</msg>
+<status status="PASS" starttime="20220827 18:16:11.431" endtime="20220827 18:16:11.434"/>
 </kw>
 <kw name="Create Dictionary" library="BuiltIn">
 <var>${header_request}</var>
 <arg>Content-Type=application/json</arg>
 <doc>Creates and returns a dictionary based on the given ``items``.</doc>
-<msg timestamp="20220827 17:23:52.016" level="INFO">${header_request} = {'Content-Type': 'application/json'}</msg>
-<status status="PASS" starttime="20220827 17:23:52.015" endtime="20220827 17:23:52.017"/>
+<msg timestamp="20220827 18:16:11.435" level="INFO">${header_request} = {'Content-Type': 'application/json'}</msg>
+<status status="PASS" starttime="20220827 18:16:11.434" endtime="20220827 18:16:11.436"/>
 </kw>
 <kw name="POST On Session" library="RequestsLibrary">
 <var>${response}</var>
@@ -90,99 +93,480 @@
 <arg>json=${body_request}</arg>
 <arg>headers=${header_request}</arg>
 <doc>Sends a POST request on a previously created HTTP Session.</doc>
-<msg timestamp="20220827 17:23:52.829" level="INFO">POST Request : url=http://private-84097e-tokopediatest.apiary-mock.com/processOrderB 
- path_url=/processOrderB 
- headers={'User-Agent': 'python-requests/2.28.1', 'Accept-Encoding': 'gzip, deflate', 'Accept': '*/*', 'Connection': 'keep-alive', 'Content-Type': 'application/json', 'Content-Length': '149'} 
- body=b'{"order_id": "", "order_description": "Order Description", "order_status": "New", "last_updated_timestamp": "1661595831989", "special_order": "true"}' 
+<msg timestamp="20220827 18:16:12.713" level="INFO">POST Request : url=http://private-84097e-tokopediatest.apiary-mock.com/processOrder 
+ path_url=/processOrder 
+ headers={'User-Agent': 'python-requests/2.28.1', 'Accept-Encoding': 'gzip, deflate', 'Accept': '*/*', 'Connection': 'keep-alive', 'Content-Type': 'application/json', 'Content-Length': '168'} 
+ body=b'{"order_id": "Order.1661598971384", "order_description": "Order Description", "order_status": "New", "last_updated_timestamp": "1661598971384", "special_order": "true"}' 
  </msg>
-<msg timestamp="20220827 17:23:52.830" level="INFO">POST Response : url=http://private-84097e-tokopediatest.apiary-mock.com/processOrderB 
- status=200, reason=OK 
- headers={'Content-Type': 'application/json', 'Content-Length': '86', 'X-Apiary-RateLimit-Limit': '120', 'X-Apiary-RateLimit-Remaining': '119', 'Access-Control-Allow-Origin': '*', 'Access-Control-Allow-Methods': 'OPTIONS,GET,HEAD,POST,PUT,DELETE,TRACE,CONNECT', 'Access-Control-Expose-Headers': 'Content-Type', 'Access-Control-Max-Age': '10', 'x-apiary-transaction-id': '6309f0bb5987e80074203f03', 'Date': 'Sat, 27 Aug 2022 10:23:55 GMT', 'Connection': 'keep-alive'} 
+<msg timestamp="20220827 18:16:12.714" level="INFO">POST Response : url=http://private-84097e-tokopediatest.apiary-mock.com/processOrder 
+ status=201, reason=Created 
+ headers={'Content-Type': 'application/json', 'Content-Length': '269', 'X-Apiary-RateLimit-Limit': '120', 'X-Apiary-RateLimit-Remaining': '119', 'Access-Control-Allow-Origin': '*', 'Access-Control-Allow-Methods': 'OPTIONS,GET,HEAD,POST,PUT,DELETE,TRACE,CONNECT', 'Access-Control-Expose-Headers': 'Content-Type', 'Access-Control-Max-Age': '10', 'x-apiary-transaction-id': '6309fcff77b2c70081d21d9f', 'Date': 'Sat, 27 Aug 2022 11:16:15 GMT', 'Connection': 'keep-alive'} 
  body={
-    "status":  "Failed",
-    "error_message": "Invalid Parameters",
-    "data": {}
+    "status":  "OK",
+    "error_message": [],
+    "data": {
+        "order_id": "000000001",
+        "order_description": "sample description",
+        "order_status": "Waiting",
+        "last_updated_timestamp": "1691588926272",
+        "special_order": true
+    }
 } 
  </msg>
-<msg timestamp="20220827 17:23:52.832" level="INFO">${response} = &lt;Response [200]&gt;</msg>
-<status status="PASS" starttime="20220827 17:23:52.017" endtime="20220827 17:23:52.833"/>
+<msg timestamp="20220827 18:16:12.716" level="INFO">${response} = &lt;Response [201]&gt;</msg>
+<status status="PASS" starttime="20220827 18:16:11.437" endtime="20220827 18:16:12.717"/>
 </kw>
-<msg timestamp="20220827 17:23:52.833" level="INFO">${response} = &lt;Response [200]&gt;</msg>
-<status status="PASS" starttime="20220827 17:23:52.008" endtime="20220827 17:23:52.835"/>
+<msg timestamp="20220827 18:16:12.718" level="INFO">${response} = &lt;Response [201]&gt;</msg>
+<status status="PASS" starttime="20220827 18:16:11.427" endtime="20220827 18:16:12.719"/>
 </kw>
 <kw name="Convert To String" library="BuiltIn">
 <var>${str_response}</var>
 <arg>${response.content}</arg>
 <doc>Converts the given item to a Unicode string.</doc>
-<msg timestamp="20220827 17:23:52.837" level="INFO">${str_response} = {
-    "status":  "Failed",
-    "error_message": "Invalid Parameters",
-    "data": {}
-}</msg>
-<status status="PASS" starttime="20220827 17:23:52.835" endtime="20220827 17:23:52.838"/>
+<msg timestamp="20220827 18:16:12.721" level="INFO">${str_response} = {
+    "status":  "OK",
+    "error_message": [],
+    "data": {
+        "order_id": "000000001",
+        "order_description": "sample description",
+        "order_status": "Waiting",
+        "last_updat...</msg>
+<status status="PASS" starttime="20220827 18:16:12.720" endtime="20220827 18:16:12.722"/>
 </kw>
 <kw name="Evaluate" library="BuiltIn">
 <var>${the data}</var>
 <arg>json.loads('''${str_response}''')</arg>
 <arg>json</arg>
 <doc>Evaluates the given expression in Python and returns the result.</doc>
-<msg timestamp="20220827 17:23:52.839" level="INFO">${the data} = {'status': 'Failed', 'error_message': 'Invalid Parameters', 'data': {}}</msg>
-<status status="PASS" starttime="20220827 17:23:52.838" endtime="20220827 17:23:52.842"/>
+<msg timestamp="20220827 18:16:12.723" level="INFO">${the data} = {'status': 'OK', 'error_message': [], 'data': {'order_id': '000000001', 'order_description': 'sample description', 'order_status': 'Waiting', 'last_updated_timestamp': '1691588926272', 'special_order'...</msg>
+<status status="PASS" starttime="20220827 18:16:12.723" endtime="20220827 18:16:12.725"/>
 </kw>
 <kw name="Convert To String" library="BuiltIn">
 <var>${resp_msg_status}</var>
 <arg>${the data['status']}</arg>
 <doc>Converts the given item to a Unicode string.</doc>
-<msg timestamp="20220827 17:23:52.844" level="INFO">${resp_msg_status} = Failed</msg>
-<status status="PASS" starttime="20220827 17:23:52.842" endtime="20220827 17:23:52.847"/>
+<msg timestamp="20220827 18:16:12.726" level="INFO">${resp_msg_status} = OK</msg>
+<status status="PASS" starttime="20220827 18:16:12.725" endtime="20220827 18:16:12.727"/>
+</kw>
+<kw name="Convert To String" library="BuiltIn">
+<var>${resp_order_status}</var>
+<arg>${the data['data']['order_status']}</arg>
+<doc>Converts the given item to a Unicode string.</doc>
+<msg timestamp="20220827 18:16:12.730" level="INFO">${resp_order_status} = Waiting</msg>
+<status status="PASS" starttime="20220827 18:16:12.729" endtime="20220827 18:16:12.731"/>
+</kw>
+<kw name="Convert To Number" library="BuiltIn">
+<var>${resp_last_updated_timestamp}</var>
+<arg>${the data['data']['last_updated_timestamp']}</arg>
+<doc>Converts the given item to a floating point number.</doc>
+<msg timestamp="20220827 18:16:12.733" level="INFO">${resp_last_updated_timestamp} = 1691588926272.0</msg>
+<status status="PASS" starttime="20220827 18:16:12.732" endtime="20220827 18:16:12.735"/>
+</kw>
+<kw name="Check Response Last Update Timestamp" library="keywords">
+<var>${compare_updated_timestamp}</var>
+<arg>${current_unixtime}</arg>
+<arg>${resp_last_updated_timestamp}</arg>
+<doc>Keyword ini berfungsi sebagai proses untuk validasi response "last_updated_timestamp"
+telah terupdate dibandingkan dengan value "last_updated_timestamp" ketika request API</doc>
+<if>
+<branch type="IF" condition="${response_timestamp} &gt; ${request_timestamp}">
+<kw name="Set Variable" library="BuiltIn">
+<var>${result}</var>
+<arg>true</arg>
+<doc>Returns the given values which can then be assigned to a variables.</doc>
+<msg timestamp="20220827 18:16:12.737" level="INFO">${result} = true</msg>
+<status status="PASS" starttime="20220827 18:16:12.737" endtime="20220827 18:16:12.738"/>
+</kw>
+<status status="PASS" starttime="20220827 18:16:12.736" endtime="20220827 18:16:12.739"/>
+</branch>
+<branch type="ELSE">
+<kw name="Set Variable" library="BuiltIn">
+<var>${result}</var>
+<arg>false</arg>
+<doc>Returns the given values which can then be assigned to a variables.</doc>
+<status status="NOT RUN" starttime="20220827 18:16:12.740" endtime="20220827 18:16:12.740"/>
+</kw>
+<status status="NOT RUN" starttime="20220827 18:16:12.739" endtime="20220827 18:16:12.741"/>
+</branch>
+<status status="PASS" starttime="20220827 18:16:12.736" endtime="20220827 18:16:12.741"/>
+</if>
+<msg timestamp="20220827 18:16:12.741" level="INFO">${compare_updated_timestamp} = true</msg>
+<status status="PASS" starttime="20220827 18:16:12.735" endtime="20220827 18:16:12.742"/>
+</kw>
+<kw name="Should Be Equal As Integers" library="BuiltIn">
+<arg>201</arg>
+<arg>${response.status_code}</arg>
+<doc>Fails if objects are unequal after converting them to integers.</doc>
+<msg timestamp="20220827 18:16:12.744" level="INFO">Argument types are:
+&lt;class 'str'&gt;
+&lt;class 'int'&gt;</msg>
+<status status="PASS" starttime="20220827 18:16:12.743" endtime="20220827 18:16:12.746"/>
+</kw>
+<kw name="Should Be Equal" library="BuiltIn">
+<arg>OK</arg>
+<arg>${resp_msg_status}</arg>
+<doc>Fails if the given objects are unequal.</doc>
+<status status="PASS" starttime="20220827 18:16:12.746" endtime="20220827 18:16:12.747"/>
+</kw>
+<kw name="Should Be Equal" library="BuiltIn">
+<arg>true</arg>
+<arg>${compare_updated_timestamp}</arg>
+<doc>Fails if the given objects are unequal.</doc>
+<status status="PASS" starttime="20220827 18:16:12.747" endtime="20220827 18:16:12.748"/>
+</kw>
+<kw name="Should Not Be Equal" library="BuiltIn">
+<arg>${order_status}</arg>
+<arg>${resp_order_status}</arg>
+<doc>Fails if the given objects are equal.</doc>
+<status status="PASS" starttime="20220827 18:16:12.749" endtime="20220827 18:16:12.749"/>
+</kw>
+<doc>Test case untuk validasi API Proses Order ketika menggunakan data yang valid.</doc>
+<status status="PASS" starttime="20220827 18:16:11.381" endtime="20220827 18:16:12.750"/>
+</test>
+<test id="s1-s1-s1-t2" name="Process Order with Exist Order ID" line="47">
+<kw name="Get Current Unixtime" library="keywords">
+<var>${current_unixtime}</var>
+<doc>Keyword ini berfungsi sebagai proses untuk mendapatkan value unixtime saat ini</doc>
+<kw name="Get Current Date" library="DateTime">
+<var>${current_date}</var>
+<doc>Returns current local or UTC time with an optional increment.</doc>
+<msg timestamp="20220827 18:16:12.755" level="INFO">${current_date} = 2022-08-27 18:16:12.755</msg>
+<status status="PASS" starttime="20220827 18:16:12.754" endtime="20220827 18:16:12.756"/>
+</kw>
+<kw name="Convert Date" library="DateTime">
+<var>${current_unixtime}</var>
+<arg>${current_date}</arg>
+<arg>epoch</arg>
+<doc>Converts between supported `date formats`.</doc>
+<msg timestamp="20220827 18:16:12.758" level="INFO">${current_unixtime} = 1661598972.755</msg>
+<status status="PASS" starttime="20220827 18:16:12.757" endtime="20220827 18:16:12.760"/>
+</kw>
+<kw name="Evaluate" library="BuiltIn">
+<var>${current_unixtime}</var>
+<arg>${current_unixtime} * 1000</arg>
+<doc>Evaluates the given expression in Python and returns the result.</doc>
+<msg timestamp="20220827 18:16:12.761" level="INFO">${current_unixtime} = 1661598972755.0</msg>
+<status status="PASS" starttime="20220827 18:16:12.760" endtime="20220827 18:16:12.762"/>
+</kw>
+<kw name="Convert To Integer" library="BuiltIn">
+<var>${current_unixtime}</var>
+<arg>${current_unixtime}</arg>
+<doc>Converts the given item to an integer number.</doc>
+<msg timestamp="20220827 18:16:12.763" level="INFO">${current_unixtime} = 1661598972755</msg>
+<status status="PASS" starttime="20220827 18:16:12.762" endtime="20220827 18:16:12.764"/>
+</kw>
+<kw name="Convert To String" library="BuiltIn">
+<var>${str_current_unixtime}</var>
+<arg>${current_unixtime}</arg>
+<doc>Converts the given item to a Unicode string.</doc>
+<msg timestamp="20220827 18:16:12.766" level="INFO">${str_current_unixtime} = 1661598972755</msg>
+<status status="PASS" starttime="20220827 18:16:12.765" endtime="20220827 18:16:12.768"/>
+</kw>
+<msg timestamp="20220827 18:16:12.768" level="INFO">${current_unixtime} = 1661598972755</msg>
+<status status="PASS" starttime="20220827 18:16:12.754" endtime="20220827 18:16:12.769"/>
+</kw>
+<kw name="Process Order" library="keywords">
+<var>${response}</var>
+<arg>${url_exist_order_id}</arg>
+<arg>${exist_order_id}</arg>
+<arg>${order_desc}</arg>
+<arg>${order_status}</arg>
+<arg>${current_unixtime}</arg>
+<arg>${special_order}</arg>
+<doc>Keyword ini berfungsi sebagai proses untuk Request ke API Process Order</doc>
+<kw name="Create Session" library="RequestsLibrary">
+<arg>session</arg>
+<arg>${base_url}</arg>
+<doc>Create Session: create a HTTP session to a server</doc>
+<msg timestamp="20220827 18:16:12.771" level="INFO">Creating Session using : alias=session, url=http://private-84097e-tokopediatest.apiary-mock.com/, headers={},                     cookies={}, auth=None, timeout=None, proxies=None, verify=False,                     debug=0 </msg>
+<status status="PASS" starttime="20220827 18:16:12.771" endtime="20220827 18:16:12.773"/>
+</kw>
+<kw name="Create Dictionary" library="BuiltIn">
+<var>${body_request}</var>
+<arg>order_id=${order_id}</arg>
+<arg>order_description=${order_description}</arg>
+<arg>order_status=${order_status}</arg>
+<arg>last_updated_timestamp=${last_updated_timestamp}</arg>
+<arg>special_order=${special_order}</arg>
+<doc>Creates and returns a dictionary based on the given ``items``.</doc>
+<msg timestamp="20220827 18:16:12.774" level="INFO">${body_request} = {'order_id': '0000001', 'order_description': 'Order Description', 'order_status': 'New', 'last_updated_timestamp': '1661598972755', 'special_order': 'true'}</msg>
+<status status="PASS" starttime="20220827 18:16:12.773" endtime="20220827 18:16:12.779"/>
+</kw>
+<kw name="Create Dictionary" library="BuiltIn">
+<var>${header_request}</var>
+<arg>Content-Type=application/json</arg>
+<doc>Creates and returns a dictionary based on the given ``items``.</doc>
+<msg timestamp="20220827 18:16:12.780" level="INFO">${header_request} = {'Content-Type': 'application/json'}</msg>
+<status status="PASS" starttime="20220827 18:16:12.779" endtime="20220827 18:16:12.781"/>
+</kw>
+<kw name="POST On Session" library="RequestsLibrary">
+<var>${response}</var>
+<arg>session</arg>
+<arg>${uri}</arg>
+<arg>json=${body_request}</arg>
+<arg>headers=${header_request}</arg>
+<doc>Sends a POST request on a previously created HTTP Session.</doc>
+<msg timestamp="20220827 18:16:13.230" level="INFO">POST Request : url=http://private-84097e-tokopediatest.apiary-mock.com/processOrderA 
+ path_url=/processOrderA 
+ headers={'User-Agent': 'python-requests/2.28.1', 'Accept-Encoding': 'gzip, deflate', 'Accept': '*/*', 'Connection': 'keep-alive', 'Content-Type': 'application/json', 'Content-Length': '156'} 
+ body=b'{"order_id": "0000001", "order_description": "Order Description", "order_status": "New", "last_updated_timestamp": "1661598972755", "special_order": "true"}' 
+ </msg>
+<msg timestamp="20220827 18:16:13.232" level="INFO">POST Response : url=http://private-84097e-tokopediatest.apiary-mock.com/processOrderA 
+ status=200, reason=OK 
+ headers={'Content-Type': 'application/json', 'Content-Length': '90', 'X-Apiary-RateLimit-Limit': '120', 'X-Apiary-RateLimit-Remaining': '119', 'Access-Control-Allow-Origin': '*', 'Access-Control-Allow-Methods': 'OPTIONS,GET,HEAD,POST,PUT,DELETE,TRACE,CONNECT', 'Access-Control-Expose-Headers': 'Content-Type', 'Access-Control-Max-Age': '10', 'x-apiary-transaction-id': '6309fcff399ec600852ea022', 'Date': 'Sat, 27 Aug 2022 11:16:15 GMT', 'Connection': 'keep-alive'} 
+ body={
+    "status":  "Failed",
+    "error_message": "Order ID has been used",
+    "data": {}
+} 
+ </msg>
+<msg timestamp="20220827 18:16:13.234" level="INFO">${response} = &lt;Response [200]&gt;</msg>
+<status status="PASS" starttime="20220827 18:16:12.781" endtime="20220827 18:16:13.235"/>
+</kw>
+<msg timestamp="20220827 18:16:13.236" level="INFO">${response} = &lt;Response [200]&gt;</msg>
+<status status="PASS" starttime="20220827 18:16:12.770" endtime="20220827 18:16:13.237"/>
+</kw>
+<kw name="Convert To String" library="BuiltIn">
+<var>${str_response}</var>
+<arg>${response.content}</arg>
+<doc>Converts the given item to a Unicode string.</doc>
+<msg timestamp="20220827 18:16:13.239" level="INFO">${str_response} = {
+    "status":  "Failed",
+    "error_message": "Order ID has been used",
+    "data": {}
+}</msg>
+<status status="PASS" starttime="20220827 18:16:13.238" endtime="20220827 18:16:13.241"/>
+</kw>
+<kw name="Evaluate" library="BuiltIn">
+<var>${the data}</var>
+<arg>json.loads('''${str_response}''')</arg>
+<arg>json</arg>
+<doc>Evaluates the given expression in Python and returns the result.</doc>
+<msg timestamp="20220827 18:16:13.242" level="INFO">${the data} = {'status': 'Failed', 'error_message': 'Order ID has been used', 'data': {}}</msg>
+<status status="PASS" starttime="20220827 18:16:13.241" endtime="20220827 18:16:13.243"/>
+</kw>
+<kw name="Convert To String" library="BuiltIn">
+<var>${resp_msg_status}</var>
+<arg>${the data['status']}</arg>
+<doc>Converts the given item to a Unicode string.</doc>
+<msg timestamp="20220827 18:16:13.244" level="INFO">${resp_msg_status} = Failed</msg>
+<status status="PASS" starttime="20220827 18:16:13.243" endtime="20220827 18:16:13.246"/>
 </kw>
 <kw name="Convert To String" library="BuiltIn">
 <var>${resp_msg_error}</var>
 <arg>${the data['error_message']}</arg>
 <doc>Converts the given item to a Unicode string.</doc>
-<msg timestamp="20220827 17:23:52.849" level="INFO">${resp_msg_error} = Invalid Parameters</msg>
-<status status="PASS" starttime="20220827 17:23:52.847" endtime="20220827 17:23:52.850"/>
+<msg timestamp="20220827 18:16:13.247" level="INFO">${resp_msg_error} = Order ID has been used</msg>
+<status status="PASS" starttime="20220827 18:16:13.246" endtime="20220827 18:16:13.249"/>
 </kw>
 <kw name="Should Be Equal As Integers" library="BuiltIn">
 <arg>200</arg>
 <arg>${response.status_code}</arg>
 <doc>Fails if objects are unequal after converting them to integers.</doc>
-<msg timestamp="20220827 17:23:52.852" level="INFO">Argument types are:
+<msg timestamp="20220827 18:16:13.251" level="INFO">Argument types are:
 &lt;class 'str'&gt;
 &lt;class 'int'&gt;</msg>
-<status status="PASS" starttime="20220827 17:23:52.851" endtime="20220827 17:23:52.855"/>
+<status status="PASS" starttime="20220827 18:16:13.249" endtime="20220827 18:16:13.252"/>
 </kw>
 <kw name="Should Be Equal" library="BuiltIn">
 <arg>Failed</arg>
 <arg>${resp_msg_status}</arg>
 <doc>Fails if the given objects are unequal.</doc>
-<status status="PASS" starttime="20220827 17:23:52.856" endtime="20220827 17:23:52.857"/>
+<status status="PASS" starttime="20220827 18:16:13.253" endtime="20220827 18:16:13.253"/>
+</kw>
+<kw name="Should Be Equal" library="BuiltIn">
+<arg>Order ID has been used</arg>
+<arg>${resp_msg_error}</arg>
+<doc>Fails if the given objects are unequal.</doc>
+<status status="PASS" starttime="20220827 18:16:13.254" endtime="20220827 18:16:13.255"/>
+</kw>
+<doc>Test case untuk validasi API Proses Order ketika menggunakan Order ID yang telah digunakan.
+Dengan catatan Order ID merupakan data yang unique</doc>
+<status status="PASS" starttime="20220827 18:16:12.752" endtime="20220827 18:16:13.256"/>
+</test>
+<test id="s1-s1-s1-t3" name="Process Order with Empty Order ID" line="74">
+<kw name="Get Current Unixtime" library="keywords">
+<var>${current_unixtime}</var>
+<doc>Keyword ini berfungsi sebagai proses untuk mendapatkan value unixtime saat ini</doc>
+<kw name="Get Current Date" library="DateTime">
+<var>${current_date}</var>
+<doc>Returns current local or UTC time with an optional increment.</doc>
+<msg timestamp="20220827 18:16:13.261" level="INFO">${current_date} = 2022-08-27 18:16:13.261</msg>
+<status status="PASS" starttime="20220827 18:16:13.260" endtime="20220827 18:16:13.262"/>
+</kw>
+<kw name="Convert Date" library="DateTime">
+<var>${current_unixtime}</var>
+<arg>${current_date}</arg>
+<arg>epoch</arg>
+<doc>Converts between supported `date formats`.</doc>
+<msg timestamp="20220827 18:16:13.263" level="INFO">${current_unixtime} = 1661598973.261</msg>
+<status status="PASS" starttime="20220827 18:16:13.262" endtime="20220827 18:16:13.264"/>
+</kw>
+<kw name="Evaluate" library="BuiltIn">
+<var>${current_unixtime}</var>
+<arg>${current_unixtime} * 1000</arg>
+<doc>Evaluates the given expression in Python and returns the result.</doc>
+<msg timestamp="20220827 18:16:13.266" level="INFO">${current_unixtime} = 1661598973261.0</msg>
+<status status="PASS" starttime="20220827 18:16:13.265" endtime="20220827 18:16:13.268"/>
+</kw>
+<kw name="Convert To Integer" library="BuiltIn">
+<var>${current_unixtime}</var>
+<arg>${current_unixtime}</arg>
+<doc>Converts the given item to an integer number.</doc>
+<msg timestamp="20220827 18:16:13.269" level="INFO">${current_unixtime} = 1661598973261</msg>
+<status status="PASS" starttime="20220827 18:16:13.268" endtime="20220827 18:16:13.271"/>
+</kw>
+<kw name="Convert To String" library="BuiltIn">
+<var>${str_current_unixtime}</var>
+<arg>${current_unixtime}</arg>
+<doc>Converts the given item to a Unicode string.</doc>
+<msg timestamp="20220827 18:16:13.272" level="INFO">${str_current_unixtime} = 1661598973261</msg>
+<status status="PASS" starttime="20220827 18:16:13.271" endtime="20220827 18:16:13.273"/>
+</kw>
+<msg timestamp="20220827 18:16:13.273" level="INFO">${current_unixtime} = 1661598973261</msg>
+<status status="PASS" starttime="20220827 18:16:13.260" endtime="20220827 18:16:13.274"/>
+</kw>
+<kw name="Set Variable" library="BuiltIn">
+<var>${empty_order_id}</var>
+<doc>Returns the given values which can then be assigned to a variables.</doc>
+<msg timestamp="20220827 18:16:13.276" level="INFO">${empty_order_id} = </msg>
+<status status="PASS" starttime="20220827 18:16:13.275" endtime="20220827 18:16:13.277"/>
+</kw>
+<kw name="Process Order" library="keywords">
+<var>${response}</var>
+<arg>${url_empty_order_id}</arg>
+<arg>${empty_order_id}</arg>
+<arg>${order_desc}</arg>
+<arg>${order_status}</arg>
+<arg>${current_unixtime}</arg>
+<arg>${special_order}</arg>
+<doc>Keyword ini berfungsi sebagai proses untuk Request ke API Process Order</doc>
+<kw name="Create Session" library="RequestsLibrary">
+<arg>session</arg>
+<arg>${base_url}</arg>
+<doc>Create Session: create a HTTP session to a server</doc>
+<msg timestamp="20220827 18:16:13.281" level="INFO">Creating Session using : alias=session, url=http://private-84097e-tokopediatest.apiary-mock.com/, headers={},                     cookies={}, auth=None, timeout=None, proxies=None, verify=False,                     debug=0 </msg>
+<status status="PASS" starttime="20220827 18:16:13.280" endtime="20220827 18:16:13.282"/>
+</kw>
+<kw name="Create Dictionary" library="BuiltIn">
+<var>${body_request}</var>
+<arg>order_id=${order_id}</arg>
+<arg>order_description=${order_description}</arg>
+<arg>order_status=${order_status}</arg>
+<arg>last_updated_timestamp=${last_updated_timestamp}</arg>
+<arg>special_order=${special_order}</arg>
+<doc>Creates and returns a dictionary based on the given ``items``.</doc>
+<msg timestamp="20220827 18:16:13.283" level="INFO">${body_request} = {'order_id': '', 'order_description': 'Order Description', 'order_status': 'New', 'last_updated_timestamp': '1661598973261', 'special_order': 'true'}</msg>
+<status status="PASS" starttime="20220827 18:16:13.282" endtime="20220827 18:16:13.285"/>
+</kw>
+<kw name="Create Dictionary" library="BuiltIn">
+<var>${header_request}</var>
+<arg>Content-Type=application/json</arg>
+<doc>Creates and returns a dictionary based on the given ``items``.</doc>
+<msg timestamp="20220827 18:16:13.286" level="INFO">${header_request} = {'Content-Type': 'application/json'}</msg>
+<status status="PASS" starttime="20220827 18:16:13.286" endtime="20220827 18:16:13.289"/>
+</kw>
+<kw name="POST On Session" library="RequestsLibrary">
+<var>${response}</var>
+<arg>session</arg>
+<arg>${uri}</arg>
+<arg>json=${body_request}</arg>
+<arg>headers=${header_request}</arg>
+<doc>Sends a POST request on a previously created HTTP Session.</doc>
+<msg timestamp="20220827 18:16:13.742" level="INFO">POST Request : url=http://private-84097e-tokopediatest.apiary-mock.com/processOrderB 
+ path_url=/processOrderB 
+ headers={'User-Agent': 'python-requests/2.28.1', 'Accept-Encoding': 'gzip, deflate', 'Accept': '*/*', 'Connection': 'keep-alive', 'Content-Type': 'application/json', 'Content-Length': '149'} 
+ body=b'{"order_id": "", "order_description": "Order Description", "order_status": "New", "last_updated_timestamp": "1661598973261", "special_order": "true"}' 
+ </msg>
+<msg timestamp="20220827 18:16:13.744" level="INFO">POST Response : url=http://private-84097e-tokopediatest.apiary-mock.com/processOrderB 
+ status=200, reason=OK 
+ headers={'Content-Type': 'application/json', 'Content-Length': '86', 'X-Apiary-RateLimit-Limit': '120', 'X-Apiary-RateLimit-Remaining': '118', 'Access-Control-Allow-Origin': '*', 'Access-Control-Allow-Methods': 'OPTIONS,GET,HEAD,POST,PUT,DELETE,TRACE,CONNECT', 'Access-Control-Expose-Headers': 'Content-Type', 'Access-Control-Max-Age': '10', 'x-apiary-transaction-id': '6309fd00974b2a008187acd0', 'Date': 'Sat, 27 Aug 2022 11:16:16 GMT', 'Connection': 'keep-alive'} 
+ body={
+    "status":  "Failed",
+    "error_message": "Invalid Parameters",
+    "data": {}
+} 
+ </msg>
+<msg timestamp="20220827 18:16:13.745" level="INFO">${response} = &lt;Response [200]&gt;</msg>
+<status status="PASS" starttime="20220827 18:16:13.289" endtime="20220827 18:16:13.746"/>
+</kw>
+<msg timestamp="20220827 18:16:13.746" level="INFO">${response} = &lt;Response [200]&gt;</msg>
+<status status="PASS" starttime="20220827 18:16:13.278" endtime="20220827 18:16:13.747"/>
+</kw>
+<kw name="Convert To String" library="BuiltIn">
+<var>${str_response}</var>
+<arg>${response.content}</arg>
+<doc>Converts the given item to a Unicode string.</doc>
+<msg timestamp="20220827 18:16:13.750" level="INFO">${str_response} = {
+    "status":  "Failed",
+    "error_message": "Invalid Parameters",
+    "data": {}
+}</msg>
+<status status="PASS" starttime="20220827 18:16:13.748" endtime="20220827 18:16:13.751"/>
+</kw>
+<kw name="Evaluate" library="BuiltIn">
+<var>${the data}</var>
+<arg>json.loads('''${str_response}''')</arg>
+<arg>json</arg>
+<doc>Evaluates the given expression in Python and returns the result.</doc>
+<msg timestamp="20220827 18:16:13.752" level="INFO">${the data} = {'status': 'Failed', 'error_message': 'Invalid Parameters', 'data': {}}</msg>
+<status status="PASS" starttime="20220827 18:16:13.752" endtime="20220827 18:16:13.753"/>
+</kw>
+<kw name="Convert To String" library="BuiltIn">
+<var>${resp_msg_status}</var>
+<arg>${the data['status']}</arg>
+<doc>Converts the given item to a Unicode string.</doc>
+<msg timestamp="20220827 18:16:13.755" level="INFO">${resp_msg_status} = Failed</msg>
+<status status="PASS" starttime="20220827 18:16:13.754" endtime="20220827 18:16:13.756"/>
+</kw>
+<kw name="Convert To String" library="BuiltIn">
+<var>${resp_msg_error}</var>
+<arg>${the data['error_message']}</arg>
+<doc>Converts the given item to a Unicode string.</doc>
+<msg timestamp="20220827 18:16:13.758" level="INFO">${resp_msg_error} = Invalid Parameters</msg>
+<status status="PASS" starttime="20220827 18:16:13.757" endtime="20220827 18:16:13.759"/>
+</kw>
+<kw name="Should Be Equal As Integers" library="BuiltIn">
+<arg>200</arg>
+<arg>${response.status_code}</arg>
+<doc>Fails if objects are unequal after converting them to integers.</doc>
+<msg timestamp="20220827 18:16:13.761" level="INFO">Argument types are:
+&lt;class 'str'&gt;
+&lt;class 'int'&gt;</msg>
+<status status="PASS" starttime="20220827 18:16:13.760" endtime="20220827 18:16:13.762"/>
+</kw>
+<kw name="Should Be Equal" library="BuiltIn">
+<arg>Failed</arg>
+<arg>${resp_msg_status}</arg>
+<doc>Fails if the given objects are unequal.</doc>
+<status status="PASS" starttime="20220827 18:16:13.762" endtime="20220827 18:16:13.763"/>
 </kw>
 <kw name="Should Be Equal" library="BuiltIn">
 <arg>Invalid Parameters</arg>
 <arg>${resp_msg_error}</arg>
 <doc>Fails if the given objects are unequal.</doc>
-<status status="PASS" starttime="20220827 17:23:52.859" endtime="20220827 17:23:52.860"/>
+<status status="PASS" starttime="20220827 18:16:13.763" endtime="20220827 18:16:13.764"/>
 </kw>
-<doc>Test case untuk validasi API Proses Order ketika parameter wajib dikosongkan. Catatan : Parameter yang diwajibkan di testing ini adalah order_id</doc>
-<status status="PASS" starttime="20220827 17:23:51.972" endtime="20220827 17:23:52.860"/>
+<doc>Test case untuk validasi API Proses Order ketika parameter wajib dikosongkan.
+Catatan : Parameter yang diwajibkan di testing ini adalah order_id</doc>
+<status status="PASS" starttime="20220827 18:16:13.258" endtime="20220827 18:16:13.766"/>
 </test>
-<status status="PASS" starttime="20220827 17:23:51.794" endtime="20220827 17:23:52.862"/>
+<status status="PASS" starttime="20220827 18:16:11.270" endtime="20220827 18:16:13.769"/>
 </suite>
-<status status="PASS" starttime="20220827 17:23:51.789" endtime="20220827 17:23:52.866"/>
+<status status="PASS" starttime="20220827 18:16:11.263" endtime="20220827 18:16:13.772"/>
 </suite>
-<status status="PASS" starttime="20220827 17:23:51.764" endtime="20220827 17:23:52.869"/>
+<status status="PASS" starttime="20220827 18:16:11.238" endtime="20220827 18:16:13.775"/>
 </suite>
 <statistics>
 <total>
-<stat pass="1" fail="0" skip="0">All Tests</stat>
+<stat pass="3" fail="0" skip="0">All Tests</stat>
 </total>
 <tag>
 </tag>
 <suite>
-<stat pass="1" fail="0" skip="0" id="s1" name="Technical Test Tokopedia">Technical Test Tokopedia</stat>
-<stat pass="1" fail="0" skip="0" id="s1-s1" name="Tests">Technical Test Tokopedia.Tests</stat>
-<stat pass="1" fail="0" skip="0" id="s1-s1-s1" name="Process Order">Technical Test Tokopedia.Tests.Process Order</stat>
+<stat pass="3" fail="0" skip="0" id="s1" name="Technical Test Tokopedia">Technical Test Tokopedia</stat>
+<stat pass="3" fail="0" skip="0" id="s1-s1" name="Tests">Technical Test Tokopedia.Tests</stat>
+<stat pass="3" fail="0" skip="0" id="s1-s1-s1" name="Process Order">Technical Test Tokopedia.Tests.Process Order</stat>
 </suite>
 </statistics>
 <errors>
