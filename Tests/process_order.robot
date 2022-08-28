@@ -1,8 +1,9 @@
 *** Settings ***
-# Documentation     This .robot file is a suite
+Documentation     File ini berisi kumpulan test case untuk validasi pengujian skenario Process Order.
 Resource          ../Resources/keywords.resource
 
 *** Variables ***
+# Test Variable
 ${exist_order_id}=    0000001
 ${order_desc}=    Order Description
 ${order_status}=    New
@@ -14,11 +15,11 @@ ${url_empty_order_id}=    /processOrderB    #dummy API, akan di hit untuk mengha
 
 
 *** Test Cases ***
-Process Order with New Order ID
+TC_01 : Process Order with New Order ID
     [Documentation]    Test case untuk validasi API Proses Order ketika menggunakan data yang valid. 
 
     ${current_unixtime}=    Get Current Unixtime
-    ${new_order_id}=    Catenate    Order.${current_unixtime}
+    ${new_order_id}=    Get new Order ID
     
     # Memanggil keyword "Process Order" yang ada pada file keywords.resource untuk Request POST ke API
     ${response}=    Process Order    
@@ -26,7 +27,6 @@ Process Order with New Order ID
     ...                ${new_order_id}
     ...                ${order_desc}
     ...                ${order_status}
-    ...                ${current_unixtime}
     ...                ${special_order}
 
     ${str_response}=    Convert To String    ${response.content}
@@ -40,11 +40,11 @@ Process Order with New Order ID
     # Proses validasi API
     Should Be Equal As Integers    201    ${response.status_code}
     Should Be Equal    OK    ${resp_msg_status}
-    Should Be Equal    true      ${compare_updated_timestamp}  
+    Should Be Equal    true      ${compare_updated_timestamp}
     Should Not Be Equal    ${order_status}    ${resp_order_status}
     
 
-Process Order with Exist Order ID
+TC_02 : Process Order with Exist Order ID
     [Documentation]    Test case untuk validasi API Proses Order ketika menggunakan Order ID yang telah digunakan.
     ...                Dengan catatan Order ID merupakan data yang unique
 
@@ -56,7 +56,6 @@ Process Order with Exist Order ID
     ...                ${exist_order_id}
     ...                ${order_desc}
     ...                ${order_status}
-    ...                ${current_unixtime}
     ...                ${special_order}
 
     ${str_response}=    Convert To String    ${response.content}
@@ -71,7 +70,7 @@ Process Order with Exist Order ID
     Should Be Equal    Order ID has been used    ${resp_msg_error}
     
 
-Process Order with Empty Order ID
+TC_03 : Process Order with Empty Order ID
     [Documentation]    Test case untuk validasi API Proses Order ketika parameter wajib dikosongkan. 
     ...                Catatan : Parameter yang diwajibkan di testing ini adalah order_id
 
@@ -86,7 +85,6 @@ Process Order with Empty Order ID
     ...                ${empty_order_id}
     ...                ${order_desc}
     ...                ${order_status}
-    ...                ${current_unixtime}
     ...                ${special_order}
 
     ${str_response}=    Convert To String    ${response.content}
