@@ -10,9 +10,11 @@ ${base_url}=    http://private-84097e-tokopediatest.apiary-mock.com/
 Process Order
     [Documentation]    Keyword ini berfungsi sebagai proses untuk Request ke API Process Order
 
-    [Arguments]    ${uri}    ${order_id}    ${order_description}    ${order_status}    ${last_updated_timestamp}    ${special_order}
+    [Arguments]    ${uri}    ${order_id}    ${order_description}    ${order_status}    ${special_order}
     
-    Create Session    session    ${base_url}
+    Create Session    po_session    ${base_url}
+
+    ${last_updated_timestamp}=    Get Current Unixtime
 
     ${body_request}=    Create Dictionary
     ...                    order_id=${order_id}
@@ -22,7 +24,7 @@ Process Order
     ...                    special_order=${special_order}
     
     ${header_request}=    Create Dictionary    Content-Type=application/json
-    ${response}=    POST On Session    session    ${uri}    json=${body_request}    headers=${header_request}
+    ${response}=    POST On Session    po_session    ${uri}    json=${body_request}    headers=${header_request}
     
     [Return]    ${response}
 
@@ -49,3 +51,10 @@ Check Response Last Update Timestamp
     END
 
     [Return]    ${result}
+
+Get new Order ID
+    
+    ${current_unixtime}=    Get Current Unixtime
+    ${new_order_id}=    Catenate    Order.${current_unixtime}
+
+    [Return]    ${new_order_id}
